@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>380</width>
+    <height>332</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonIconOnly</enum>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <widget class="PlayerButton" name="p1button">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>70</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Player 1</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="m_playerID" stdset="0">
+     <number>1</number>
+    </property>
+   </widget>
+   <widget class="PlayerButton" name="p2button">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>160</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Player 2</string>
+    </property>
+    <property name="m_playerID" stdset="0">
+     <number>-1</number>
+    </property>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>256</width>
+      <height>256</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QGraphicsView" name="gridSquare00"/>
+     </item>
+     <item row="0" column="1">
+      <widget class="QGraphicsView" name="gridSquare01"/>
+     </item>
+     <item row="1" column="1">
+      <widget class="QGraphicsView" name="gridSquare11"/>
+     </item>
+     <item row="1" column="3">
+      <widget class="QGraphicsView" name="gridSquare12"/>
+     </item>
+     <item row="0" column="3">
+      <widget class="QGraphicsView" name="gridSquare02"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QGraphicsView" name="gridSquare20"/>
+     </item>
+     <item row="2" column="3">
+      <widget class="QGraphicsView" name="gridSquare22"/>
+     </item>
+     <item row="2" column="1">
+      <widget class="QGraphicsView" name="gridSquare21"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QGraphicsView" name="gridSquare10"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>380</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuTic_Tac_Toe">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionQuit"/>
+   </widget>
+   <addaction name="menuTic_Tac_Toe"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>PlayerButton</class>
+   <extends>QPushButton</extends>
+   <header location="global">playerbutton.h</header>
+   <slots>
+    <signal>changeCurrentPlayer(PlayerType)</signal>
+    <slot>setButtonText(QString)</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionQuit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>130</x>
+     <y>148</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>setText(QString)</signal>
+   <receiver>p1button</receiver>
+   <slot>setButtonText(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>299</x>
+     <y>251</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>325</x>
+     <y>119</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>p1button</sender>
+   <signal>changeCurrentPlayer(PlayerType)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setPlayerID(PlayerType)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>308</x>
+     <y>115</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>307</x>
+     <y>150</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>p2button</sender>
+   <signal>changeCurrentPlayer(PlayerType)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setPlayerID(PlayerType)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>317</x>
+     <y>209</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>317</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <signal>setText(QString)</signal>
+  <slot>setPlayerID(PlayerType)</slot>
+ </slots>
+</ui>
